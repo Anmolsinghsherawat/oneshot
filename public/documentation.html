@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ONE SHOT ANIMATION — Client & Developer Handover Specification</title>
+  <style>
+    :root {
+      --primary-red: #ED1C24;
+      --dark-bg: #0A0B10;
+      --card-bg: #12141D;
+      --text-main: #1E293B;
+      --text-muted: #64748B;
+      --border-color: #E2E8F0;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text-main);
+      background-color: #F8FAFC;
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .no-print-bar {
+      max-width: 900px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0A0B10;
+      color: #FFF;
+      padding: 16px 24px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .no-print-bar h2 {
+      font-size: 18px;
+      color: var(--primary-red);
+      margin: 0;
+    }
+
+    .btn-print {
+      background: var(--primary-red);
+      color: #FFF;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-print:hover {
+      background: #C4141B;
+      transform: translateY(-1px);
+    }
+
+    .doc-container {
+      max-width: 900px;
+      margin: 0 auto;
+      background: #FFFFFF;
+      padding: 50px;
+      border-radius: 16px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    /* Cover Header */
+    .cover-header {
+      background: #0A0B10;
+      color: #FFFFFF;
+      padding: 40px;
+      border-radius: 12px;
+      border-left: 6px solid var(--primary-red);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .cover-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .cover-header .subtitle {
+      color: var(--primary-red);
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .cover-header .description {
+      color: #94A3B8;
+      font-size: 14px;
+    }
+
+    /* Meta Grid */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      background: #F1F5F9;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+
+    .meta-item {
+      font-size: 13px;
+    }
+
+    .meta-item strong {
+      color: #334155;
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 2px;
+    }
+
+    /* Section Styling */
+    h2.section-title {
+      font-size: 20px;
+      color: #0F172A;
+      border-bottom: 2px solid var(--primary-red);
+      padding-bottom: 8px;
+      margin: 36px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h2.section-title::before {
+      content: '';
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--primary-red);
+      border-radius: 50%;
+    }
+
+    p, li {
+      font-size: 14px;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 6px;
+    }
+
+    /* Table Styling */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13px;
+    }
+
+    th, td {
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+      background-color: #0F172A;
+      color: #FFFFFF;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #F8FAFC;
+    }
+
+    code {
+      font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+      background-color: #F1F5F9;
+      color: var(--primary-red);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 13px;
+    }
+
+    pre {
+      background-color: #0F172A;
+      color: #E2E8F0;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      font-size: 13px;
+      margin: 20px 0;
+      line-height: 1.5;
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      border-radius: 3px;
+      vertical-align: middle;
+      margin-right: 6px;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    /* Print Styles */
+    @media print {
+      body {
+        background: #FFFFFF;
+        padding: 0;
+      }
+
+      .no-print-bar {
+        display: none !important;
+      }
+
+      .doc-container {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      .cover-header {
+        background: #0A0B10 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      h2.section-title {
+        page-break-after: avoid;
+      }
+
+      table, pre, .meta-grid {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="no-print-bar">
+    <div>
+      <h2>ONE SHOT ANIMATION Handover Document</h2>
+      <p style="color: #94A3B8; font-size: 12px; margin: 0;">Ready for PDF export or client presentation</p>
+    </div>
+    <button class="btn-print" onclick="window.print()">
+      🖨️ Save as PDF / Print
+    </button>
+  </div>
+
+  <div class="doc-container">
+
+    <!-- Cover Header -->
+    <div class="cover-header">
+      <h1>ONE SHOT ANIMATION</h1>
+      <div class="subtitle">Client & Developer Handover Specification</div>
+      <div class="description">Production Ready v1.0.0 — Comprehensive Architecture & Operational Manual</div>
+    </div>
+
+    <!-- Metadata Grid -->
+    <div class="meta-grid">
+      <div class="meta-item">
+        <strong>Project Name</strong>
+        ONE SHOT ANIMATION Platform
+      </div>
+      <div class="meta-item">
+        <strong>Version</strong>
+        v1.0.0 (Production Build)
+      </div>
+      <div class="meta-item">
+        <strong>Document Date</strong>
+        July 27, 2026
+      </div>
+      <div class="meta-item">
+        <strong>Target Audience</strong>
+        Client Leadership & Technical Engineers
+      </div>
+      <div class="meta-item">
+        <strong>Licensing</strong>
+        Proprietary & Client Owned
+      </div>
+      <div class="meta-item">
+        <strong>Support Email</strong>
+        anmolsingh30102006@gmail.com
+      </div>
+    </div>
+
+    <!-- Section 1 -->
+    <h2 class="section-title">1. Executive Summary & Project Purpose</h2>
+    <p>
+      <strong>ONE SHOT ANIMATION</strong> is a high-craft content creation agency and ad scaling engine specializing in 3D/CGI animation, viral UGC video ads, and high-ROAS paid media campaigns.
+    </p>
+    <p>
+      This platform serves as a high-converting digital storefront designed to convert brand marketers and enterprise advertisers into qualified agency leads.
+    </p>
+
+    <!-- Section 2 -->
+    <h2 class="section-title">2. Complete Technical Stack</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Technology</th>
+          <th>Purpose</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Core Framework</strong></td>
+          <td>React 18.3 (TypeScript)</td>
+          <td>Component-driven UI architecture</td>
+        </tr>
+        <tr>
+          <td><strong>Build Tool</strong></td>
+          <td>Vite 6</td>
+          <td>Ultra-fast dev server and bundle optimizer</td>
+        </tr>
+        <tr>
+          <td><strong>Styling</strong></td>
+          <td>Tailwind CSS v4</td>
+          <td>Utility-first CSS styling engine</td>
+        </tr>
+        <tr>
+          <td><strong>Motion</strong></td>
+          <td>Motion (<code>motion/react</code>)</td>
+          <td>Scroll animations and view transitions</td>
+        </tr>
+        <tr>
+          <td><strong>Icons</strong></td>
+          <td>Lucide React</td>
+          <td>Crisp SVG vector icon set</td>
+        </tr>
+        <tr>
+          <td><strong>Interactive FX</strong></td>
+          <td>canvas-confetti</td>
+          <td>Celebration micro-interaction on form completion</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 3 -->
+    <h2 class="section-title">3. Design System & Brand Palette</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Color Name</th>
+          <th>Hex Value</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="color-swatch" style="background:#ED1C24;"></span><strong>Primary Red Accent</strong></td>
+          <td><code>#ED1C24</code></td>
+          <td>Brand red for buttons, active tabs, and glowing highlights</td>
+        </tr>
+        <tr>
+          <td><span class="color-swatch" style="background:#0A0B10;"></span><strong>Dark Canvas Charcoal</strong></td>
+          <td><code>#0A0B10</code></td>
+          <td>Deep background neutral for high contrast reel display</td>
+        </tr>
+        <tr>
+          <td><span class="color-swatch" style="background:#F59E0B;"></span><strong>Rating Gold</strong></td>
+          <td><code>#F59E0B</code></td>
+          <td>5-Star rating badges and trust indicators</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Section 4 -->
+    <h2 class="section-title">4. Security & Privacy Audit</h2>
+    <ul>
+      <li><strong>Zero API Key Exposure:</strong> The codebase is 100% clean with zero embedded client API keys, secret tokens, or server credentials.</li>
+      <li><strong>Secure Asset Delivery:</strong> All external video reels and images are streamed over HTTPS from trusted CloudFront and Unsplash CDNs.</li>
+      <li><strong>Client-Side Forms:</strong> All lead forms operate safely in-memory without server risk.</li>
+    </ul>
+
+    <!-- Section 5 -->
+    <h2 class="section-title">5. Local Installation & Development</h2>
+    <pre><code># 1. Unzip the project folder
+cd oneshot-animation
+
+# 2. Install dependencies
+npm install
+
+# 3. Launch dev server
+npm run dev
+
+# 4. Production Build
+npm run build</code></pre>
+
+    <!-- Section 6 -->
+    <h2 class="section-title">6. Future Enhancements & Backend Roadmap</h2>
+    <ol>
+      <li><strong>Form Submissions:</strong> Connect <code>ConsultationModal.tsx</code> to an email service (e.g. Formspree, Resend, SendGrid) or webhook.</li>
+      <li><strong>CMS Integration:</strong> Connect <code>PortfolioSection.tsx</code> to a headless CMS (Sanity, Strapi, Contentful) to manage video reels dynamically.</li>
+      <li><strong>Analytics:</strong> Integrate Google Analytics 4 or Meta Pixel for tracking ad conversion events.</li>
+    </ol>
+
+  </div>
+
+</body>
+</html>

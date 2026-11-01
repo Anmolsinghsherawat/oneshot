@@ -174,8 +174,8 @@ export const ViralCampaignsSection: React.FC<ViralCampaignsSectionProps> = ({
             Viral Campaigns
           </h2>
 
-          {/* Subtitle with strictly 25px font size */}
-          <p className="font-body text-[25px] font-medium text-white/90 leading-relaxed max-w-4xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+          {/* Subtitle with responsive font size up to 25px */}
+          <p className="font-body text-lg sm:text-2xl md:text-[25px] font-medium text-white/90 leading-relaxed max-w-4xl mx-auto drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
             Case studies that broke the internet and redefined digital marketing
           </p>
         </motion.div>

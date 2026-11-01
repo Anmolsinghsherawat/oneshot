@@ -52,7 +52,7 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenConsultation }
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: false, amount: 0.3 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="font-heading italic text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] text-white tracking-tight leading-none mb-8 select-none drop-shadow-[0_0_35px_rgba(237,28,36,0.35)]"
+            className="font-heading italic text-4xl sm:text-7xl md:text-9xl lg:text-[10rem] text-white tracking-tight leading-none mb-8 select-none drop-shadow-[0_0_35px_rgba(237,28,36,0.35)]"
           >
             ONESHOT
           </motion.h1>

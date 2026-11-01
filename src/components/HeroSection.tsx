@@ -82,7 +82,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           <BlurText
             id="hero-headline-blurtext"
             text="Helping you launch and scale social ads"
-            className="text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[0.95] max-w-4xl justify-center tracking-[-3px]"
+            className="text-3xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-heading italic text-white leading-[1.05] sm:leading-[0.95] max-w-4xl justify-center tracking-[-1px] sm:tracking-[-3px] break-words"
           />
         </div>
 

@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         <button
           id="mobile-menu-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-white cursor-pointer hover:bg-white/10 transition-all"
+          className="md:hidden p-2.5 rounded-xl bg-white/10 border border-white/20 text-white cursor-pointer hover:bg-white/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center"
           aria-label="Toggle menu"
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -161,15 +161,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            className="mx-4 mt-3 bg-black/85 backdrop-blur-2xl border border-white/15 rounded-2xl p-5 flex flex-col gap-3 shadow-2xl md:hidden"
+            className="mx-4 mt-3 bg-black/90 backdrop-blur-2xl border border-white/20 rounded-2xl p-5 flex flex-col gap-2 shadow-2xl md:hidden"
           >
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={(e) => handleLinkClick(e, link.name, link.view, link.targetId)}
-                className={`text-left text-base font-semibold font-body py-2 px-3 rounded-lg border-b border-white/5 transition-colors cursor-pointer ${
+                className={`text-left text-base font-semibold font-body py-3 px-4 rounded-xl border-b border-white/5 transition-colors cursor-pointer min-h-[44px] flex items-center ${
                   activeTab === link.name
-                    ? 'text-[#ED1C24] bg-white/5'
+                    ? 'text-[#ED1C24] bg-white/10'
                     : 'text-white/80 hover:text-white'
                 }`}
               >
@@ -182,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setMobileMenuOpen(false);
                 onOpenConsultation();
               }}
-              className="mt-2 w-full bg-[#ED1C24] text-white hover:bg-red-600 font-bold py-3 px-5 rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer shadow-[0_0_20px_rgba(237,28,36,0.6)]"
+              className="mt-2 w-full bg-[#ED1C24] text-white hover:bg-red-600 font-bold py-3.5 px-5 rounded-full flex items-center justify-center gap-2 transition-all cursor-pointer min-h-[44px] shadow-[0_0_20px_rgba(237,28,36,0.6)]"
             >
               <span>Let's Talk</span>
               <ArrowUpRight className="h-4 w-4" />
